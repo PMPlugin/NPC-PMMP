@@ -9,6 +9,7 @@ use pocketmine\event\server\DataPacketReceiveEven;
 use pocketmine\utils\Config;
 use AVENDA\UI\MainUI;
 use pocketmine\network\mcpe\protocol\ModalFormResponsePacket;
+use pocketmine\command\{CommandSender, Command};
 
 class Main extends PluginBase implements Listener {
 	public $setting;
@@ -30,6 +31,11 @@ class Main extends PluginBase implements Listener {
 			$pk = new MainUI ( $this );
 			$pk->sendUI ( $player );
 		}
+	}
+	public function cmd(CommandSender $s, Command $c, string $label, array $args): bool{
+		if($c->getName() == "npc")
+			$pk = new MainUI ( $this );
+			$pk->sendUI ( $player );
 	}
 	public function sendUI(DataPacketReceiveEvent $event) {
 		$pk = $event->getPacket ();
