@@ -34,8 +34,8 @@ class Main extends PluginBase implements Listener {
 	}
 	public function cmd(CommandSender $s, Command $c, string $label, array $args): bool{
 		if($c->getName() == "npc")
-			$pk = new MainUI ( $this );
-			$pk->sendUI ( $player );
+			$pk = new MainUI ( $this, $s );
+			$pk->sendUI ( $s );
 	}
 	public function sendUI(DataPacketReceiveEvent $event) {
 		$pk = $event->getPacket ();
