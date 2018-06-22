@@ -2,10 +2,13 @@
 
 namespace AVENDA\UI;
 
+use AVENDA\Main;
+use pocketmine\Player;
+
 class DeleteNPCUI {
 	private $owner;
 	private $player;
-	public function __construct(\AVENDA\Main $owner, \pocketmine\Player $player) {
+	public function __construct(Main $owner, Player $player) {
 		$this->owner = $owner;
 		$this->player = $player;
 	}

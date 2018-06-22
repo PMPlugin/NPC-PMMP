@@ -2,9 +2,13 @@
 
 namespace AVENDA\UI;
 
+use AVENDA\Main;
+use pocketmine\Player;
+use AVENDA\UI\CreateNPC;
+
 class MainUI {
 	private $owner;
-	public function __construct(\AVENDA\UI $owner, \pocketmine\Player $player) {
+	public function __construct(Main $owner, Player $player) {
 		$this->owner = $owner;
 		$this->player = $player;
 	}
@@ -31,8 +35,8 @@ class MainUI {
 		} else if ($value == 2) {
 		}
 	}
-	public function cnpc(\pocketmine\Player $player) {
-		$cn = new \AVENDA\UI\CreateNPC ( $this->owner, $x, $y, $z, $lv );
+	public function cnpc(Player $player) {
+		$cn = new CreateNPC ( $this->owner, $x, $y, $z, $lv );
 		$cn->cnpc ( $player, $n ); // $n = npc namae
 	}
 }
