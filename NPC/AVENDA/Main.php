@@ -5,10 +5,14 @@ namespace AVENDA;
 class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Listener {
 	public $setting;
 	public $sdb;
+	public $npc;
+	public $npcdb;
 	public function onEnable() {
 		@mkdir ( $this->getDataFolder () );
 		$this->setting = new \pocketmine\utils\Config ( $this->getDataFolder () . "setting.yml", Config::YAML );
 		$this->sdb = $this->setting->getAll ();
+		$this->npc = new \pocketmine\utils\Config ( $this->getDataFolder () . "npc.yml", Config::YAML );
+		$this->npcdb = $this->npc->getAll ();
 		$this->getServer ()->getPluginManager ()->registerEvents ( $this, $this );
 	}
 	public function open(\pocketmine\event\player\PlayerInteractEvent $event) {
@@ -35,5 +39,11 @@ class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Li
 			case 2 :
 				break;
 		}
+	}
+	public function save() {
+		$this->setting->setAll ( $this->sdb );
+		$this->setting->save ();
+		$this->npc->getAll ( $this->npcdb );
+		$this->npc->save ();
 	}
 }
