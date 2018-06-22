@@ -2,30 +2,38 @@
 
 namespace AVENDA;
 
-class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Listener {
+use pocketmine\plugin\PluginBase;
+use pocketmine\event\Listener;
+use pocketmine\event\player\PlayerInteractEvent;
+use pocketmine\event\server\DataPacketReceiveEven;
+use pocketmine\utils\Config;
+use AVENDA\UI\MainUI;
+use pocketmine\network\mcpe\protocol\ModalFormResponsePacket;
+
+class Main extends PluginBase implements Listener {
 	public $setting;
 	public $sdb;
 	public $npc;
 	public $npcdb;
 	public function onEnable() {
 		@mkdir ( $this->getDataFolder () );
-		$this->setting = new \pocketmine\utils\Config ( $this->getDataFolder () . "setting.yml", Config::YAML );
+		$this->setting = new Config ( $this->getDataFolder () . "setting.yml", Config::YAML );
 		$this->sdb = $this->setting->getAll ();
-		$this->npc = new \pocketmine\utils\Config ( $this->getDataFolder () . "npc.yml", Config::YAML );
+		$this->npc = new Config ( $this->getDataFolder () . "npc.yml", Config::YAML );
 		$this->npcdb = $this->npc->getAll ();
 		$this->getServer ()->getPluginManager ()->registerEvents ( $this, $this );
 	}
-	public function open(\pocketmine\event\player\PlayerInteractEvent $event) {
+	public function open(PlayerInteractEvent $event) {
 		$player = $event->getPlayer ();
 		$item = $event->getItem ();
 		if ($item->getId () == 0000000) {
-			$pk = new \AVENDA\UI\MainUI ( $this );
+			$pk = new MainUI ( $this );
 			$pk->sendUI ( $player );
 		}
 	}
-	public function sendUI(\pocketmine\event\server\DataPacketReceiveEvent $event) {
+	public function sendUI(DataPacketReceiveEvent $event) {
 		$pk = $event->getPacket ();
-		if (! $pk instanceof \pocketmine\network\mcpe\protocol\ModalFormResponsePacket)
+		if (! $pk instanceof ModalFormResponsePacket)
 			return;
 		$p = $event->getPlayer ();
 		if ($pk->formData === null or $pk->formId !== 1410303)
