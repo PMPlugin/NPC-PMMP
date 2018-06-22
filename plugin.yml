@@ -1,7 +1,7 @@
 name: NPC
 version: "0.0.1"
 author: AVENDA
-main: NPC\AVENDA\Main
+main: AVENDA\Main
 api:
 - 3.0.0
 - 3.0.1
