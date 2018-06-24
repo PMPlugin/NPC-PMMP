@@ -10,7 +10,7 @@
 
 ## How To CreateNPC?
 
-<img src = "ceateui.jpg" alt = "image is not readey">
+<img src = "ceateui.jpg" alt = "image is not readey"></img>
 ## How To Instance This Plugin?
 
 **I haven't written Yet!**
