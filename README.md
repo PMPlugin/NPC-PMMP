@@ -1,6 +1,9 @@
-# NPC-PMMP
+# NPC UI-PMMP
 
-THIS is MineCraftBE Plugin in PmmP
+**This is MineCraftBE Plugin of PmmP**
 
-## How To Use?
-' /npc ' or ' Use BlazSitck(369) to touch the Gorund '
+## How To Use This Plugin?
+
+**You should follow this Expression**
+
+<pre><code>/npc or Use BlazeSitck(369) to touch the ground</code></pre>
